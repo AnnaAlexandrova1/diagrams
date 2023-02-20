@@ -1,4 +1,4 @@
-import { auth } from "../actions/idInput";
+import { auth, avgData } from "../actions/idInput";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, OutlinedInput, Button, Typography } from "@mui/material";
@@ -25,8 +25,11 @@ export default function Login() {
         <Button
           variant="contained"
           href="#contained-buttons"
+          className="red"
           sx={{ textTransform: "none" }}
-          onClick={() => dispatch(auth(id))}
+          onClick={() => {
+            dispatch(auth(id))
+            dispatch(avgData())}}
         >
           Резульатты тестирования
         </Button>

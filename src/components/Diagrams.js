@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import { CircularProgress, Box, Typography } from "@mui/material";
 import FirstTest from "./diagram/FirstTest";
+import SecondTest from "./diagram/SecondTest";
+import FourthTest from "./diagram/FourthTest";
 
 
 
 export default function Diagrams() {
-  const { isAuth, currentUser, data } = useSelector((state) => state.auth);
-  console.log(data);
+  const { isAuth, currentUser, data, dataAvg } = useSelector((state) => state.auth);
+ // console.log(dataAvg);
 
   if (isAuth === "loading") {
     return (
@@ -29,7 +31,9 @@ export default function Diagrams() {
   return (
     <Box className="container">
           <div>Диаграммы</div>
-          <FirstTest/>
+      <FirstTest />
+      <SecondTest />
+      <FourthTest />
     </Box>
   );
 }

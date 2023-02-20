@@ -22,10 +22,14 @@ ChartJS.register(
 );
 
 export default function FirstTest() {
-  const { isAuth, currentUser, data } = useSelector((state) => state.auth);
+  const { isAuth, currentUser, data, dataAvg } = useSelector((state) => state.auth);
   let val = data[0]
+
+  //среднее значение по диаграмме
+  const avg = dataAvg.data[0]
   //названия лепестков диаграммы
-  const legend = ["ИО", "ИД", "ИН", "ИС", "ИП", "ИМ", "ИЗ"]
+  const legend = ["Общая интернальность", "Интернальности в области достижений", "Интернальность в области неудач", "Интернальность в семейных отношениях",
+    "Интернальность в производственных отношениях", "Интернальность в области межличностных отношений", "Интернальность в отношении здоровья и болезни"]
   
   const list = {
     labels: legend,
@@ -34,9 +38,12 @@ export default function FirstTest() {
         label: "ТЕСТ№1 Уровень субъективного контроля",
         data: legend.map(i => val[i])
       },
+      { label: "Средняя теста Уровень субъективного контроля",
+        data: legend.map(i => parseFloat(avg[i].replace(',','.').replace(' ','')))
+      }
     ],
   };
-
+  
   return (
     <Box className='container-diagrams'>
       <Radar data={list} />
