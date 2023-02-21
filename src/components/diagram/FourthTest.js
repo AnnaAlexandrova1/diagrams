@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
+import React, { PureComponent } from "react";
+import * as colors from "./../../colors/colors";
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, CartesianAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import {
   Chart as ChartJS,
@@ -11,9 +14,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -25,49 +27,67 @@ ChartJS.register(
   Legend
 );
 
-
 export default function FourthTest() {
-    const { isAuth, currentUser, data, dataAvg } = useSelector((state) => state.auth);
-    let val = data[0]
+  const { isAuth, currentUser, data, dataAvg } = useSelector(
+    (state) => state.auth
+  );
+  let val = data[0]["ИТОГО-тест4"];
 
-    
-   //среднее значение по диаграмме
-    const avg = dataAvg.data[0]
-    const labels = ['zydfhm', 'atdhfkm']
-const options = {
+  //среднее значение по диаграмме
+  const avg = dataAvg.data;
+  const low = avg.filter((i) => i["показатель"] === "Низкий уровень апатии");
+  const middle = avg.filter(
+    (i) => i["показатель"] === "Средний уровень апатии"
+  );
+  const hight = avg.filter((i) => i["показатель"] === "Высокий уровень апатии");
+  const hightTop = +middle[0]["до"] + +low[0]["до"] - +low[0]["от"];
+
+  const options = {
     responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: "ТЕСТ№ 4 Шкала апатии",
+      },
     },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
+  };
+  const labels = ["", "Начало диапазона", "Конец диапазона", ""];
   const list = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [5, 8],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: [8, 15],
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-    
-    return (
-    <Box className='container-diagrams'>
-            <Line data={list}
-            options={options}/>
-      </Box>)
+    labels,
+    datasets: [
+      {
+        label: "Низкий уровень апатии",
+        data: [NaN, low[0]["от"], low[0]["до"], NaN],
+        borderColor: colors.blue,
+        backgroundColor: colors.blueOpasity,
+      },
+      {
+        label: "Средний уровень апатии",
+        data: [NaN, middle[0]["от"], middle[0]["до"], NaN],
+        borderColor: colors.orange,
+        backgroundColor: colors.orangeOpasity,
+      },
+      {
+        label: "Высокий уровень апатии",
+        data: [NaN, hight[0]["от"], hightTop, NaN],
+        borderColor: colors.grey,
+        backgroundColor: colors.greyOpacity,
+      },
+      {
+        label: "Индивидуальное значение",
+        data: [NaN, val, val, NaN],
+        borderColor: colors.black,
+        backgroundColor: colors.black,
+      },
+    ],
+  };
 
+  return (
+    <Box className="container-diagrams">
+      <Line options={options} data={list} />
+    </Box>
+  );
 }

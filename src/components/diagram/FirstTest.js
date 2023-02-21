@@ -31,21 +31,41 @@ export default function FirstTest() {
   const legend = ["Общая интернальность", "Интернальности в области достижений", "Интернальность в области неудач", "Интернальность в семейных отношениях",
     "Интернальность в производственных отношениях", "Интернальность в области межличностных отношений", "Интернальность в отношении здоровья и болезни"]
   
+  const legendLabels = ["Общая интернальность", "В области достижений", "В области неудач", "В семейных отношениях",
+    "В производственных отношениях", "В области межличностных отношений", "В отношении здоровья"]
+  
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "ТЕСТ№ 1 Уровень субьективного контроля",
+      },
+    },
+  };
+  
   const list = {
-    labels: legend,
+    labels: legendLabels,
     datasets: [
       {
-        label: "ТЕСТ№1 Уровень субъективного контроля",
-        data: legend.map(i => val[i])
+        label: "Индивидуальное значение",
+        data: legend.map(i => val[i]),
+        borderColor: "rgba(230, 145, 28, 0.8)",
+        backgroundColor: "rgba(230, 145, 28, 0.1)",
       },
       { label: "Средняя теста Уровень субъективного контроля",
-        data: legend.map(i => parseFloat(avg[i].replace(',','.').replace(' ','')))
+        data: legend.map(i => parseFloat(avg[i].replace(',', '.').replace(' ', ''))),
+        borderColor: "rgba(53, 162, 235, 0.8)",
+        backgroundColor: "rgba(53, 162, 235, 0.1)",
       }
     ],
   };
   
   return (
     <Box className='container-diagrams'>
-      <Radar data={list} />
-      </Box>)
+      <Radar options={options} data={list}  />
+    </Box>)
 }
