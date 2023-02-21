@@ -39,7 +39,7 @@ export default function Login() {
             try {
               await dispatch(auth(id));
               await dispatch(avgData());
-              await navigate("/result");
+              await navigate("/diagrams");
             } catch (err) {
               alert(err);
             }
