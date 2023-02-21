@@ -1,4 +1,6 @@
 import "./App.css";
+import { Routes, Route } from 'react-router-dom';
+
 import Login from "./Login";
 import Diagrams from "./Diagrams";
 import { auth } from "../actions/idInput";
@@ -9,11 +11,13 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 function App() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuth);
-  console.log(isAuth);
 
   return (
     <div className="App">
-      {isAuth==='logout' ? <Login /> : <Diagrams/> }
+      <Routes>
+        <Route path="/" element={<Login />}/>
+        <Route path="diagrams" element={<Diagrams/>}/>
+      </Routes>
     </div>
   );
 }

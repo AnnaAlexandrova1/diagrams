@@ -36,6 +36,8 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 isAuth:' false',
                 currentUser: '',
+                data: [],
+                dataAvg: []
             }
           case ID_ERROR:
             return {
