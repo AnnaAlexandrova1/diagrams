@@ -95,7 +95,7 @@ export default function FirstTest() {
     <Box
       className="container-diagrams"
       sx={{
-        marginTop: "4px",
+        marginTop: "50px",
       }}
     >
       {drowDiagram()}
