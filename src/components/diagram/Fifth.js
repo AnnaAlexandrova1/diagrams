@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import React, { PureComponent } from "react";
 import { Box } from "@mui/system";
+import * as colors from "./../../colors/colors";
 
 import {
   Chart as ChartJS,
@@ -34,6 +35,26 @@ export default function Fifth() {
     (i) => i["показатель"] === "Cреднее отколонение-женщины"
   )[0];
 
+  const valGender = () => {
+    if (data[0]['пол']==="ж") {
+      return labels.map((i) => [
+          round(avgWomen[i]) - 1,
+          round(avgWomen[i]) + 1,
+        ])
+    } else if (data[0]['пол'] === "м") {
+      return labels.map((i) => [round(avgMen[i]) - 1, round(avgMen[i]) + 1])
+    } 
+  }
+
+  const drowLabel = () => {
+    if (data[0]['пол'] === "ж") {
+      return "Cреднее отколонение-женщины"
+    } else if (data[0]['пол'] === "м") {
+      return "Cреднее отколонение-мужчины"
+    }
+  }
+
+  console.log(data[0]['пол']==="ж")
   const options = {
     responsive: true,
     plugins: {
@@ -64,22 +85,14 @@ export default function Fifth() {
     labels,
     datasets: [
       {
-        label: "Мужчины",
-        data: labels.map((i) => [round(avgMen[i]) - 1, round(avgMen[i]) + 1]),
-        backgroundColor: "rgba(53, 162, 235, 0.8)",
-      },
-      {
-        label: "Женщины",
-        data: labels.map((i) => [
-          round(avgWomen[i]) - 1,
-          round(avgWomen[i]) + 1,
-        ]),
-        backgroundColor: "rgba(230, 145, 28, 0.8)",
-      },
-      {
         label: "Индивидуальное значение",
         data: labels.map((i) => [round(data[0][i]) - 1, round(data[0][i]) + 1]),
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        backgroundColor: colors.orange,
+      },
+          {
+        label: drowLabel(),
+        data: valGender(),
+        backgroundColor: colors.blue,
       },
     ],
   };

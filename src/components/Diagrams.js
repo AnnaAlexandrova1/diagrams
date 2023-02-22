@@ -4,10 +4,12 @@ import { CircularProgress, Box, Typography, Button, Chip } from "@mui/material";
 import { logout } from "../reducers/authReduser";
 import FirstTest from "./diagram/FirstTest";
 import SecondTest from "./diagram/SecondTest";
+import ThirdTest from "./diagram/ThirdTest";
 import FourthTest from "./diagram/FourthTest";
 import Fifth from "./diagram/Fifth";
 import { useEffect } from "react";
 import { display, width } from "@mui/system";
+
 
 export default function Diagrams() {
   const { isAuth, currentUser, data, dataAvg } = useSelector(
@@ -43,6 +45,7 @@ export default function Diagrams() {
         <Box className="container">
           <FirstTest />
           <SecondTest />
+          <ThirdTest />
           <FourthTest />
           <Fifth />
         </Box>

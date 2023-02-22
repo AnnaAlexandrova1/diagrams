@@ -59,28 +59,28 @@ export default function FourthTest() {
     labels,
     datasets: [
       {
+        label: "Индивидуальное значение",
+        data: [NaN, val, val, NaN],
+        borderColor: colors.orange,
+        backgroundColor: colors.orange,
+      },
+      {
         label: "Низкий уровень апатии",
         data: [NaN, low[0]["от"], low[0]["до"], NaN],
-        borderColor: colors.blue,
-        backgroundColor: colors.blueOpasity,
+        borderColor: colors.blueLow,
+        backgroundColor: colors.blueLow,
       },
       {
         label: "Средний уровень апатии",
         data: [NaN, middle[0]["от"], middle[0]["до"], NaN],
-        borderColor: colors.orange,
-        backgroundColor: colors.orangeOpasity,
+        borderColor: colors.blue,
+        backgroundColor: colors.blue,
       },
       {
         label: "Высокий уровень апатии",
         data: [NaN, hight[0]["от"], hightTop, NaN],
-        borderColor: colors.grey,
-        backgroundColor: colors.greyOpacity,
-      },
-      {
-        label: "Индивидуальное значение",
-        data: [NaN, val, val, NaN],
-        borderColor: colors.black,
-        backgroundColor: colors.black,
+        borderColor: colors.blueHight,
+        backgroundColor: colors.blueHight,
       },
     ],
   };

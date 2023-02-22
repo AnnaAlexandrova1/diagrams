@@ -3,6 +3,8 @@
 export const orange = "rgba(230, 145, 28, 0.8)"
 export const orangeOpasity = "rgba(230, 145, 28, 0.1)"
 export const blue = "rgba(53, 162, 235, 0.8)"
+export const blueLow = "rgba(53, 180, 235, 0.8)"
+export const blueHight = "rgba(53, 120, 235, 0.8)"
 export const blueOpasity = "rgba(53, 162, 235, 0.1)"
 export const grey = 'rgba(96, 95, 107, 0.8)'
 export const greyOpacity = 'rgba(96, 95, 107, 0.3)'

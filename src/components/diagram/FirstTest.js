@@ -26,7 +26,6 @@ export default function FirstTest() {
     (state) => state.auth
   );
   let val = data[0];
-  console.log(dataAvg.data[0]);
   //среднее значение по диаграмме
 
   //названия лепестков диаграммы
