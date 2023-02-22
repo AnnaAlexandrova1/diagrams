@@ -54,9 +54,9 @@ export default function Fifth() {
     }
   }
 
-  console.log(data[0]['пол']==="ж")
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
@@ -98,7 +98,10 @@ export default function Fifth() {
   };
 
   return (
-    <Box className="container-diagrams">
+    <Box className="container-diagrams"
+    sx={{
+        minHeight: { xs: '400px' },
+      }}>
       <Bar options={options} data={list} />
     </Box>
   );

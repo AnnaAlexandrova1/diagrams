@@ -23,6 +23,7 @@ export default function Login() {
         <Typography variant="h4">Введите id</Typography>
         <Typography variant="span">Например 21152</Typography>
         <OutlinedInput
+          type="number"
           onInput={(e) => setId(e.target.value)}
           value={id}
           sx={{
@@ -36,6 +37,10 @@ export default function Login() {
           className="red"
           sx={{ textTransform: "none" }}
           onClick={async () => {
+            if (id.length !== 5) {
+              alert("неверный ID");
+              return;
+            }
             try {
               await dispatch(auth(id));
               await dispatch(avgData());

@@ -44,6 +44,7 @@ export default function FourthTest() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "bottom",
@@ -86,7 +87,10 @@ export default function FourthTest() {
   };
 
   return (
-    <Box className="container-diagrams">
+    <Box className="container-diagrams"
+    sx={{
+        minHeight: { xs: '300px' },
+      }}>
       <Line options={options} data={list} />
     </Box>
   );

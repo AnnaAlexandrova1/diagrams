@@ -54,6 +54,7 @@ export default function ThirdTest() {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
@@ -82,7 +83,10 @@ export default function ThirdTest() {
   };
 
   return (
-    <Box className="container-diagrams">
+    <Box className="container-diagrams"
+      sx={{
+        minHeight: { xs: '400px' },
+      }}>
       <Bar options={options} data={list} />
     </Box>
   );
